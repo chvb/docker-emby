@@ -5,12 +5,14 @@ ARG DEBIAN_FRONTEND="noninteractive"
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
 # Install build packages
-RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
-    apt-get update -qq && \
+RUN apt-get update -qq && \
     apt-get install -qy \
+        python-software-properties \
         gnupg \
         wget \
-        xz-utils \
+        xz-utils && \
+    add-apt-repository ppa:jonathonf/ffmpeg-3 && \
+    apt-get install -qy \
         ffmpeg \
         libav-tools \
         x264 \
