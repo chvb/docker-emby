@@ -75,4 +75,7 @@ RUN apt-get update -qq && \
 # Set file permissions
     chmod +x /docker-entrypoint.sh
 
+# set Directories
+VOLUME ["/config","/media"]
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
