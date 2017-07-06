@@ -7,7 +7,7 @@ COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 # Install build packages
 RUN apt-get update -qq && \
     apt-get install -qy \
-        python-software-properties \
+        software-properties-common \
         gnupg \
         wget \
         xz-utils && \
