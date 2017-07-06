@@ -11,12 +11,6 @@ RUN apt-get update -qq && \
         gnupg \
         wget \
         xz-utils && \
-    add-apt-repository ppa:jonathonf/ffmpeg-3 && \
-    apt-get install -qy \
-        ffmpeg \
-        libav-tools \
-        x264 \
-        x265 && \
 
 # Create user
     useradd -u 911 -U -d /config -s /bin/false duser && \
@@ -30,6 +24,13 @@ RUN apt-get update -qq && \
     echo 'deb http://download.opensuse.org/repositories/home:/emby/Debian_9.0/ /' >> /etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
     apt-get install -qy --no-install-recommends procps emby-server && \
+    add-apt-repository ppa:jonathonf/ffmpeg-3 && \
+    apt-get update -qq && \
+    apt-get install -qy \
+        ffmpeg \
+        libav-tools \
+        x264 \
+        x265 && \
 
 # Cleanup
     apt-get purge -qq \
