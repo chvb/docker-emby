@@ -10,7 +10,7 @@ RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
     apt-get install -qy \
         gnupg \
         wget \
-        xz-utils
+        xz-utils \
         ffmpeg \
         libav-tools \
         x264 \
