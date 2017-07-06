@@ -5,26 +5,22 @@ ARG DEBIAN_FRONTEND="noninteractive"
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
 # Install build packages
-RUN apt-get update -qq && \
+RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
+    apt-get update -qq && \
     apt-get install -qy \
         gnupg \
         wget \
-        xz-utils && \
+        xz-utils
+        ffmpeg \
+        libav-tools \
+        x264 \
+        x265 && \
 
 # Create user
     useradd -u 911 -U -d /config -s /bin/false duser && \
     usermod -G users duser && \
     groupmod -o -g 100 duser && \
     usermod -o -u 99 duser && \
-
-# Install ffmpeg
-RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
-    apt-get update && \
-    apt-get install -qy \
-        ffmpeg \
-        libav-tools \
-        x264 \
-        x265 && \
 
 # Install emby-server
     wget -nv -O /tmp/Release.key http://download.opensuse.org/repositories/home:emby/Debian_9.0/Release.key && \
